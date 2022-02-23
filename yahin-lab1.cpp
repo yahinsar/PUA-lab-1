@@ -210,12 +210,12 @@ void    bo_result(int N, int **a)
     cout << "Антисимметричность:" << res_antisimm << endl;
     cout << "Транзитивность:" << res_tranz << endl;
 
-    if (res_refl == 1 && res_antirefl == 0 && res_antisimm == 0 && res_tranz == 1) {
+    if (res_refl == 1 && res_tranz == 1) {
         cout << "Данное отношение является отношением квазипорядка" << endl;
         if (res_simm == 1)
             cout << "Данное отношение является отношением эквивалентности" << endl;
     }
-    if (res_refl == 1 && res_antirefl == 0 && res_simm == 0 && res_antisimm == 1 && res_tranz == 1) {
+    if (res_refl == 1 && res_antisimm == 1 && res_tranz == 1) {
         cout << "Данное отношение является отношением порядка" << endl;
     }
 
