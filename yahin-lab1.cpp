@@ -3,7 +3,7 @@
 using namespace std;
 int brk = 0;
 
-bool bo_is_reflexive(int N, int **a)
+bool bo_is_reflexive(int N, int** a)
 {
     int res = 0;
 
@@ -22,7 +22,7 @@ bool bo_is_reflexive(int N, int **a)
     return  res;
 }
 
-bool bo_is_antireflexive(int N, int **a)
+bool bo_is_antireflexive(int N, int** a)
 {
     int res = 0;
 
@@ -41,7 +41,7 @@ bool bo_is_antireflexive(int N, int **a)
     return  res;
 }
 
-bool bo_is_symmetric(int N, int **a)
+bool bo_is_symmetric(int N, int** a)
 {
     int res = 0;
 
@@ -72,11 +72,11 @@ bool bo_is_antisymmetric(int N, int** a)
         for (int j = i + 1; j < N; ++j)
         {
             if (a[i][j] == 1 && a[j][i] == 1) {
-                if (i = j)
+                if (i == j)
                     res = 1;
                 else res = 0;
             }
-            else res = 0;
+            else res = 1;
 
             if (res == 0)
             {
@@ -136,14 +136,14 @@ void z_sim(int N, int** a)
 
 void z_tranz(int N, int** a)
 {
-    for (int i = 0; i < N; i++) 
-        for (int j = 0; j < N; j++) 
-            for (int k = 0; k < N; k++) 
-                if (a[j][k] == 1) 
-                    for (int d = 0; d < N; d++) 
+    for (int i = 0; i < N; i++)
+        for (int j = 0; j < N; j++)
+            for (int k = 0; k < N; k++)
+                if (a[j][k] == 1)
+                    for (int d = 0; d < N; d++)
                         if (a[k][d] == 1)
                             a[j][d] = 1;
-                    
+
 }
 
 
@@ -157,40 +157,40 @@ void z_build(int N, int** a, int vvod)
             z_a[i][j] = a[i][j];
         }
     }
-        switch (vvod)
-        {
-        case 1:
-            z_reflexive(N, z_a);
-            break;
-        case 2:
-            z_sim(N, z_a);
-            break;
-        case 3:
-            z_tranz(N, z_a);
-            break;
-        case 4:
-            z_reflexive(N, z_a);
-            z_sim(N, z_a);
-            z_tranz(N, z_a);
-            break;
-        case 5:
-            brk = 1;
-            break;
-        default:
-            cout << "Error" << endl;
-            break;
+    switch (vvod)
+    {
+    case 1:
+        z_reflexive(N, z_a);
+        break;
+    case 2:
+        z_sim(N, z_a);
+        break;
+    case 3:
+        z_tranz(N, z_a);
+        break;
+    case 4:
+        z_reflexive(N, z_a);
+        z_sim(N, z_a);
+        z_tranz(N, z_a);
+        break;
+    case 5:
+        brk = 1;
+        break;
+    default:
+        cout << "Error" << endl;
+        break;
+    }
+    if (brk == 0) {
+        cout << "Построенное замыкание:" << endl;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++)
+                cout << z_a[i][j] << ' ';
+            cout << endl;
         }
-        if (brk == 0) {
-            cout << "Построенное замыкание:" << endl;
-            for (int i = 0; i < N; i++) {
-                for (int j = 0; j < N; j++)
-                    cout << z_a[i][j] << ' ';
-                cout << endl;
-            }
-        }
+    }
 }
 
-void    bo_result(int N, int **a)
+void    bo_result(int N, int** a)
 {
     cout << "Введеная матрица:" << endl;
     for (int i = 0; i < N; i++) {
@@ -222,11 +222,11 @@ void    bo_result(int N, int **a)
     int vvod;
     cout << "Введите, какое замыкание требуется построить:" << endl;
     cout << "1 - рефлексивное" << endl << "2 - симметричное" << endl << "3 - транзитивное" << endl << "4 - эквивалентное" << endl << "5 - не строить никакое замыкание" << endl;
-        while (brk == 0) {
-            cout << "Введите номер:" << endl;
-            cin >> vvod;
-            z_build(N, a, vvod);
-        }
+    while (brk == 0) {
+        cout << "Введите номер:" << endl;
+        cin >> vvod;
+        z_build(N, a, vvod);
+    }
 }
 int main()
 {
@@ -235,7 +235,7 @@ int main()
     int sposob, i, j, N;
     cout << "Введите способ ввода (1 - поэлементно, 2 - построчно): "; cin >> sposob;
     cout << "Введите размерность матрицы бинарного отношения: "; cin >> N;
-    int ** a;
+    int** a;
     a = new int* [N];
     cout << "Введите матрицу А" << endl;
     if (sposob == 1) {
