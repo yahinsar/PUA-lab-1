@@ -5,7 +5,7 @@ int brk = 0;
 
 bool bo_is_reflexive(int N, int** a)
 {
-    int res = 0;
+    bool res = 0;
 
     for (int i = 0; i < N; ++i)
     {
@@ -24,7 +24,7 @@ bool bo_is_reflexive(int N, int** a)
 
 bool bo_is_antireflexive(int N, int** a)
 {
-    int res = 0;
+    bool res = 0;
 
     for (int i = 0; i < N; ++i)
     {
@@ -43,7 +43,7 @@ bool bo_is_antireflexive(int N, int** a)
 
 bool bo_is_symmetric(int N, int** a)
 {
-    int res = 0;
+    bool res = 0;
 
     for (int i = 0; i < N; ++i)
     {
@@ -65,7 +65,7 @@ bool bo_is_symmetric(int N, int** a)
 
 bool bo_is_antisymmetric(int N, int** a)
 {
-    int res = 0;
+    bool res = 0;
 
     for (int i = 0; i < N; ++i)
     {
@@ -90,7 +90,7 @@ bool bo_is_antisymmetric(int N, int** a)
 
 bool bo_is_transitive(int N, int** a)
 {
-    int res = 0;
+    bool res = 0;
 
     for (int i = 0; i < N; ++i)
     {
@@ -233,8 +233,14 @@ int main()
     setlocale(LC_ALL, "Rus");
 
     int sposob, i, j, N;
-    cout << "Введите способ ввода (1 - поэлементно, 2 - построчно): "; cin >> sposob;
-    cout << "Введите размерность матрицы бинарного отношения: "; cin >> N;
+    cout << "Введите способ ввода (1 - поэлементно, 2 - построчно): ";
+    cin >> sposob;
+    cout << "Введите размерность матрицы бинарного отношения: ";
+    cin >> N;
+    if (N == 0) {
+        cout << "Ошибка";
+        return 0;
+    }
     int** a;
     a = new int* [N];
     cout << "Введите матрицу А" << endl;
